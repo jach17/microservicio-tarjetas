@@ -48,6 +48,10 @@ contrlInfo.registros=async(req,res)=>{
      }
 }
 
+contrlInfo.ping=async(req,res)=>{
+     res.status(200).json("pong")
+}
+
 contrlInfo.eliminar=async(req,res)=>{
      try{
          empresa = parseInt(req.params.id,10)

@@ -1,16 +1,18 @@
 const { Router } = require("express");
-
+const auth = require("../middlewares/auth")
 const router = Router();
 const contrlInfo = require ('../controllers/infoEmpresas')
 
-router.get('/:id',contrlInfo.unregistro);
+router.get('/:id', auth, contrlInfo.unregistro);
 
-router.get('/',contrlInfo.registros);
+router.get('/', auth, contrlInfo.registros);
 
-router.post('/insertar',contrlInfo.insertarInfo);
+router.post('/insertar', auth, contrlInfo.insertarInfo);
 
-router.delete('/:id',contrlInfo.eliminar)
+router.delete('/:id', auth, contrlInfo.eliminar)
 
-router.put('/:id',contrlInfo.actualizar)
+router.put('/:id', auth, contrlInfo.actualizar)
+
+router.get('/test/ping', auth, contrlInfo.ping);
 
 module.exports=router

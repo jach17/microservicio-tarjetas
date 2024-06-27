@@ -8,7 +8,9 @@ app.set('port',process.env.PORT||1000);
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.use(require("./src/routes/datos"))
+
+const protectedRoutes = require("./src/routes/datos") 
+app.use("/api/cards/", protectedRoutes)
 
 
 module.exports= app;
