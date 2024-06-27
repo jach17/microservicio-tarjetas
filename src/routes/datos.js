@@ -3,16 +3,16 @@ const auth = require("../middlewares/auth")
 const router = Router();
 const contrlInfo = require ('../controllers/infoEmpresas')
 
-router.get('/:id', auth, contrlInfo.unregistro);
+router.get('/:id', contrlInfo.unregistro);
 
-router.get('/', auth, contrlInfo.registros);
+router.get('/', contrlInfo.registros);
 
-router.post('/insertar', auth, contrlInfo.insertarInfo);
+router.post('/insertar', contrlInfo.insertarInfo);
 
-router.delete('/:id', auth, contrlInfo.eliminar)
+router.delete('/:id', contrlInfo.eliminar)
 
-router.put('/:id', auth, contrlInfo.actualizar)
+router.put('/:id', contrlInfo.actualizar)
 
-router.get('/test/ping', auth, contrlInfo.ping);
+router.get('/test/ping', contrlInfo.ping);
 
 module.exports=router
