@@ -14,7 +14,8 @@ const informacion= new Schema({
     correo:String,
     eslogan:String,
     paginaWb:String,
-    paginaFb:String
+    paginaFb:String,
+    estatus:Boolean
 
 },{
     versionKey:false,

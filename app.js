@@ -9,8 +9,9 @@ app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-const protectedRoutes = require("./src/routes/datos") 
-app.use("/api/cards/", protectedRoutes)
+// const protectedRoutes = require("./src/routes/datos") 
+// app.use("/api/cards/", protectedRoutes)
+app.use("/api/cards/", require ('./src/routes/datos'))
 
 
 module.exports= app;
