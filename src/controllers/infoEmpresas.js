@@ -15,30 +15,34 @@ contrlInfo.insertarInfo= async(req,res)=>{
 
 }
 
-contrlInfo.unregistro=async(req,res)=>{
-     try{
-          empresa = parseInt(req.params.id,10)
+contrlInfo.unregistro = async (req, res) => {
+    try {
+        let empresa = parseInt(req.params.id, 10);
 
-          if (isNaN(empresa)) {
-               return res.status(400).json({ mensaje: "ID inválido, debe ser un número entero" });
-             }
+        if (isNaN(empresa)) {
+            return res.status(400).json({ mensaje: "ID inválido, debe ser un número entero" });
+        }
 
-          empresa = await info.findOne({id:empresa})
-          
-          let bandera = empresa.estatus
-          console.log(bandera)
-          if(empresa!=null && bandera == true){
-            //console.log(empresa);
-              res.status(200).json(empresa);
-         }else{
-          res.status(400).json({mesaje:"No se encontro la infomación o esta desactivado"})
-         }
-     }catch(error){
-          console.log(error)
-          res.send(500).json({mesajen:"Error interno al procesar datos"})
-     }
+        let datos = await info.findOne({ id: empresa });
+        console.log("datos", datos); // Imprime los datos obtenidos
+        if (datos !== null) {
+            let bandera = datos.estatus;
 
+            if (bandera === true) {
+                res.status(200).json(datos);
+            } else {
+                res.status(400).json({ Estatus: bandera });
+            }
+        } else {
+            res.status(404).json({ mensaje: "No se encuentra el dato" });
+            console.log("Empresa no encontrada");
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ mensaje: "Error interno al procesar datos" });
+    }
 }
+
 
 contrlInfo.registros=async(req,res)=>{
      try{
